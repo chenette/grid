@@ -71,36 +71,36 @@ circuit is created.
 3. Use cat to create a circuit definition file, `circuit.yaml`, using the
    following contents.
 
-   **Note**: In the lines below, replace `<gridd-alpha public key>` with the key
+   **IMPORTANT**: In the lines below, replace <mark>griddAlphaPublicKey</mark> with the key
    from step 1.
 
-   ```
-   root@splinterd-alpha:/# cat > circuit.yaml
-   circuit_id: my-grid-circuit
-   roster:
-     - service_id: grid-scabbard-a
-       service_type: scabbard
-       allowed_nodes:
-         - alpha-node-000
-       arguments:
-         - ["admin_keys", "[\"<gridd-alpha public key>\"]"]
-         - ["peer_services", "[\"grid-scabbard-b\"]"]    
-     - service_id: grid-scabbard-b
-       service_type: scabbard
-       allowed_nodes:
-        - beta-node-000
-       arguments:
-         - ["admin_keys", "[\"<gridd-alpha public key>\"]"]
-         - ["peer_services", "[\"grid-scabbard-a\"]"]
-   members:
-     - node_id: alpha-node-000
-       endpoint: tls://splinterd-alpha:8044
-     - node_id: beta-node-000
-       endpoint: tls://splinterd-beta:8044
-   authorization_type: Trust
-   durability: NoDurability
-   circuit_management_type: grid
-   ```
+   <pre>
+   <code>root@splinterd-alpha:/# cat > circuit.yaml</code>
+   <code>circuit_id: my-grid-circuit</code>
+   <code>roster:</code>
+     <code>- service_id: grid-scabbard-a</code>
+       <code>service_type: scabbard</code>
+       <code>allowed_nodes:</code>
+         <code>- alpha-node-000</code>
+       <code>arguments:</code>
+         <code>- ["admin_keys", "[\"</code><mark>griddAlphaPublicKey</mark><code>\"]"]</code>
+         <code>- ["peer_services", "[\"grid-scabbard-b\"]"]</code>
+     <code>- service_id: grid-scabbard-b</code>
+       <code>service_type: scabbard</code>
+       <code>allowed_nodes:</code>
+         <code>- beta-node-000</code>
+       <code>arguments:</code>
+         <code>- ["admin_keys", "[\"</code><mark>griddAlphaPublicKey</mark><code>\"]"]</code>
+         <code>- ["peer_services", "[\"grid-scabbard-a\"]"]</code>
+   <code>members:</code>
+     <code>- node_id: alpha-node-000</code>
+       <code>endpoint: tls://splinterd-alpha:8044</code>
+     <code>- node_id: beta-node-000</code>
+       <code>endpoint: tls://splinterd-beta:8044</code>
+   <code>authorization_type: Trust</code>
+   <code>durability: NoDurability</code>
+   <code>circuit_management_type: grid</code>
+   </pre>
 
    This YAML file defines a circuit between two nodes, `alpha-node-000` and
    `beta-node-000`. Each node runs scabbard, the Splinter service that will
